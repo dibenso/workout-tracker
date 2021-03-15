@@ -1,7 +1,14 @@
 const router = require("express").Router();
+const { Workout } = require("../models");
 
-router.get("/api/workouts", (req, res) => {
-  res.json({ message: "Hello World!" });
+router.get("/api/workouts", async (req, res) => {
+  try {
+    const workouts = await Workout.find({}).exec();
+
+    res.json(workouts);
+  } catch(error) {
+    throw error;
+  }
 });
 
 router.put("/api/workouts/:id", (req, res) => {
