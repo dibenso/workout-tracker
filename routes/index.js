@@ -45,8 +45,17 @@ router.put("/api/workouts/:id", async (req, res) => {
   }
 });
 
-router.post("/api/workouts", (req, res) => {
-  res.json({ workout: req.body });
+router.post("/api/workouts", async (req, res) => {
+  try {
+    const workout = new Workout({ day: new Date(new Date().setDate(new Date().getDate())) });
+    await workout.save();
+
+    res.json(workout);
+  } catch(error) {
+    res.sendStatus(500);
+
+    throw error;
+  }
 });
 
 module.exports = router;
