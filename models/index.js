@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const ExerciseSchema = new mongoose.Schema({
   type: "String",
   name: "String",
+  distance: "Number",
   duration: "Number",
   weight: "Number",
   reps: "Number",
