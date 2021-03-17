@@ -6,8 +6,10 @@ const routes = require("./routes/index");
 const PORT = process.env.PORT || 8080;
 const app = express();
 
-mongoose.connect("mongodb://localhost/workout", {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
   useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
   useFindAndModify: false
 });
 
